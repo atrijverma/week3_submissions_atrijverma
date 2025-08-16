@@ -9,9 +9,9 @@ class ClockPublisher(Node):
         super().__init__('clock_publisher')
 
         # Publishers
-        self.second_pub = self.create_publisher(Int64, '/second', 10)
-        self.minute_pub = self.create_publisher(Int64, '/minute', 10)
-        self.hour_pub = self.create_publisher(Int64, '/hour', 10)
+        self.second_pub = self.create_publisher(Int32, '/second', 10)
+        self.minute_pub = self.create_publisher(Int32, '/minute', 10)
+        self.hour_pub = self.create_publisher(In32, '/hour', 10)
         self.clock_pub = self.create_publisher(String, '/clock', 10)
 
         self.seconds = 0
@@ -39,13 +39,13 @@ class ClockPublisher(Node):
                 self.hours += 1
 
     def publish_time_components(self):
-        sec = Int64()
+        sec = Int32()
         sec.data = self.seconds
         self.second_pub.publish(sec)
-        min = Int64()
+        min = Int32()
         min.data = self.minutes
         self.minute_pub.publish(min)
-        hour = Int64()
+        hour = Int32()
         hour.data = self.hours
         self.hour_pub.publish(hour)
 
